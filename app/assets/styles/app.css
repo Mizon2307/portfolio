@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-sans: 'Inter', sans-serif;
+}
+
+@layer utilities {
+	.prose {
+		--tw-prose-body: var(--color-gray-950);
+	}
+}
