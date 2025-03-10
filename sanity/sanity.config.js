@@ -11,7 +11,7 @@ export const dataset = config.public.sanity.dataset ?? ''
 
 export default defineConfig({
 	name: 'default',
-	title: 'Sanity Nuxt Minimal',
+	title: 'Portfolio',
 
 	basePath: '/admin',
 

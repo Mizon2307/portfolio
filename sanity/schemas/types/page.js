@@ -38,7 +38,7 @@ export default defineType({
 			title: 'Blocks',
 			description: ' ',
 			type: 'array',
-			of: [{ type: 'content' }, { type: 'media' }, { type: 'posts' }],
+			of: [{ type: 'content' }, { type: 'media' }, { type: 'posts' }, { type: 'hero' }, { type: 'highlights' }, { type: 'contact' }],
 			group: 'content',
 		}),
 		defineField({

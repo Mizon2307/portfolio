@@ -24,7 +24,7 @@ const { data: page } = await useSanityQuery(query, {
 })
 
 useSeoMeta({
-	title: () => page?.value?.meta?.title ?? `${page?.value?.name} — Sanity Nuxt Minimal`,
+	title: () => page?.value?.meta?.title ?? `${page?.value?.name} — Portfolio`,
 	description: () => page?.value?.meta?.description ?? '',
 	ogImage: () => (page?.value?.meta?.image ? image(page.value.meta.image.asset._ref, { width: 1200, height: 630 }) : ''),
 })
