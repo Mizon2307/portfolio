@@ -55,29 +55,46 @@
 			</h4>
 
 			<div class="w-full my-20 border-[1.5px] border-purple py-8 px-6 md:my-24 md:py-10 md:px-8 lg:my-32 lg:py-12 lg:px-8">
-				<form name="contact" netlify netlify-honeypot="bot-field">
-					<input type="text" name="bot-field" class="hidden" />
+				<form name="contact" netlify netlify-honeypot="bot-field" @submit.prevent="handleSubmit">
+					<!-- Honeypot field (hidden) -->
+					<input type="text" name="bot-field" class="hidden" v-model="form.botField" />
+
 					<div class="grid gap-16 sm:grid-cols-2">
+						<!-- First Name -->
 						<div class="space-y-3 sm:space-y-4">
 							<label for="first-name" class="inline-block font-headline uppercase text-sm">First name</label>
-							<input value="" type="text" id="first-name" name="first-name" placeholder="Your first name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+							<input type="text" id="first-name" name="first-name" placeholder="Your first name" class="block w-full text-lg pt-2 pb-4 border-b-[1.5px] border-purple outline-none" v-model="form.firstName" />
+							<span v-if="v$.firstName.$error" class="text-red-500 text-sm">First name is required</span>
 						</div>
+
+						<!-- Last Name -->
 						<div class="space-y-3 sm:space-y-4">
 							<label for="last-name" class="inline-block font-headline uppercase text-sm">Last name</label>
-							<input value="" type="text" id="last-name" name="last-name" placeholder="Your last name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+							<input type="text" id="last-name" name="last-name" placeholder="Your last name" class="block w-full text-lg pt-2 pb-4 border-b-[1.5px] border-purple outline-none" v-model="form.lastName" />
+							<span v-if="v$.lastName.$error" class="text-red-500 text-sm">Last name is required</span>
 						</div>
+
+						<!-- Email -->
 						<div class="space-y-3 sm:space-y-4">
 							<label for="email" class="inline-block font-headline uppercase text-sm">Email</label>
-							<input value="" type="email" id="email" name="email" placeholder="Email address" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+							<input type="email" id="email" name="email" placeholder="Email address" class="block w-full text-lg pt-2 pb-4 border-b-[1.5px] border-purple outline-none" v-model="form.email" />
+							<span v-if="v$.email.$error" class="text-red-500 text-sm">Email is required</span>
 						</div>
+
+						<!-- Company -->
 						<div class="space-y-3 sm:space-y-4">
 							<label for="company" class="inline-block font-headline uppercase text-sm">Company</label>
-							<input value="" type="text" id="company" name="company" placeholder="Company name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+							<input type="text" id="company" name="company" placeholder="Company name" class="block w-full text-lg pt-2 pb-4 border-b-[1.5px] border-purple outline-none" v-model="form.company" />
 						</div>
+
+						<!-- Message -->
 						<div class="space-y-3 sm:col-span-2 sm:space-y-4">
 							<label for="message" class="inline-block font-headline uppercase text-sm">Message</label>
-							<textarea id="message" name="message" rows="8" placeholder="Start typing here" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none"></textarea>
+							<textarea id="message" name="message" rows="8" placeholder="Start typing here" class="block w-full text-lg pt-2 pb-4 border-b-[1.5px] border-purple outline-none" v-model="form.message"></textarea>
+							<span v-if="v$.message.$error" class="text-red-500 text-sm">Message is required</span>
 						</div>
+
+						<!-- Submit Button -->
 						<div>
 							<button type="submit" class="text-xl cursor-pointer inline-flex border-b-[1.5px] border-violet hover:border-purple transition-all duration-300 ease-in-out">Send message</button>
 						</div>
@@ -89,7 +106,37 @@
 </template>
 
 <script setup>
-const props = defineProps({
-	data: Object,
+import { ref } from 'vue'
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength } from '@vuelidate/validators'
+
+// Form data
+const form = ref({
+	firstName: '',
+	lastName: '',
+	email: '',
+	company: '',
+	message: '',
+	botField: '', // Honeypot field (should be empty)
 })
+
+// Validation rules
+const rules = {
+	firstName: { required },
+	lastName: { required },
+	email: { required, email },
+	company: {},
+	message: { required, minLength: minLength(10) },
+	botField: {}, // No validation needed
+}
+
+const v$ = useVuelidate(rules, form)
+
+const handleSubmit = async () => {
+	const isFormValid = await v$.value.$validate()
+	if (!isFormValid) return
+	if (form.value.botField) return // Stop spam bots
+
+	console.log('Form submitted:', form.value)
+}
 </script>
