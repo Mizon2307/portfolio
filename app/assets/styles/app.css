@@ -45,7 +45,7 @@
 	@apply relative;
 	&::after {
 		content: '';
-		@apply absolute left-0 right-0 block w-full h-[1px] transition-all duration-300 ease-in-out;
+		@apply absolute left-0 right-0 block w-full h-[1.5px] transition-all duration-300 ease-in-out;
 	}
 	&:hover::after {
 		@apply bg-purple;

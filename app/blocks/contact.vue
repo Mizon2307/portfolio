@@ -54,17 +54,35 @@
 				</div>
 			</h4>
 
-			<form name="contact" netlify>
-				<p>
-					<label>Name <input type="text" name="name" /></label>
-				</p>
-				<p>
-					<label>Email <input type="email" name="email" /></label>
-				</p>
-				<p>
-					<button type="submit">Send</button>
-				</p>
-			</form>
+			<div class="w-full my-20 border-[1.5px] border-purple py-8 px-6 md:my-24 md:py-10 md:px-8 lg:my-32 lg:py-12 lg:px-8">
+				<form name="contact" netlify>
+					<div class="grid gap-16 sm:grid-cols-2">
+						<div class="space-y-3 sm:space-y-4">
+							<label for="first-name" class="inline-block font-headline uppercase text-sm">First name</label>
+							<input value="" type="text" id="first-name" name="first-name" placeholder="Your first name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+						</div>
+						<div class="space-y-3 sm:space-y-4">
+							<label for="last-name" class="inline-block font-headline uppercase text-sm">Last name</label>
+							<input value="" type="text" id="last-name" name="last-name" placeholder="Your last name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+						</div>
+						<div class="space-y-3 sm:space-y-4">
+							<label for="email" class="inline-block font-headline uppercase text-sm">Email</label>
+							<input value="" type="email" id="email" name="email" placeholder="Email address" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+						</div>
+						<div class="space-y-3 sm:space-y-4">
+							<label for="company" class="inline-block font-headline uppercase text-sm">Company</label>
+							<input value="" type="text" id="company" name="company" placeholder="Company name" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none" />
+						</div>
+						<div class="space-y-3 sm:col-span-2 sm:space-y-4">
+							<label for="message" class="inline-block font-headline uppercase text-sm">Message</label>
+							<textarea id="message" name="message" rows="8" placeholder="Start typing here" class="block w-full text-lg appearance-none pt-2 pb-4 border-b-[1.5px] border-purple outline-none"></textarea>
+						</div>
+						<div>
+							<button type="submit" class="text-xl cursor-pointer inline-flex border-b-[1.5px] border-violet hover:border-purple transition-all duration-300 ease-in-out">Send message</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</container>
 	</section>
 </template>
