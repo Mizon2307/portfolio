@@ -55,7 +55,8 @@
 			</h4>
 
 			<div class="w-full my-20 border-[1.5px] border-purple py-8 px-6 md:my-24 md:py-10 md:px-8 lg:my-32 lg:py-12 lg:px-8">
-				<form name="contact" netlify>
+				<form name="contact" netlify netlify-honeypot="bot-field">
+					<input type="text" name="bot-field" class="hidden" />
 					<div class="grid gap-16 sm:grid-cols-2">
 						<div class="space-y-3 sm:space-y-4">
 							<label for="first-name" class="inline-block font-headline uppercase text-sm">First name</label>
