@@ -16,24 +16,19 @@ export default defineType({
 			type: 'richText',
 		}),
 		defineField({
+			name: 'pedals',
+			title: 'Pedals',
+			type: 'array',
+			of: [{ type: 'string' }],
+		}),
+		defineField({
 			name: 'carousel',
 			title: 'Carousel',
-			type: 'document',
-			fields: [
-				{
-					name: 'images',
-					title: 'Images',
-					type: 'array',
-					of: [
-						{
-							type: 'image',
-							options: {
-								hotspot: true,
-							},
-						},
-					],
-				},
-			],
+			type: 'array',
+			of: [{ type: 'image' }],
+			options: {
+				hotspot: true,
+			},
 		}),
 	],
 

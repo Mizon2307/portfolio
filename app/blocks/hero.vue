@@ -11,14 +11,24 @@
 						<path d="M56 44.2 28.1 70 .1 44.2l5.6-6L24 55.4V.9h8.1v54.5l18.3-17.2 5.6 6Z" fill="#16074C" />
 					</svg>
 				</div>
-				<!--
-				<template>
-					<div class="carousel">
-						<div v-for="(image, index) in images?.images" :key="index" class="carousel-item">
-							<nuxt-img :src="image.asset.url" format="webp" loading="lazy" class="image" />
-						</div>
-					</div>
-				</template> -->
+
+				<swiper
+					loop
+					:modules="[EffectFade]"
+					effect="fade"
+					:autoplay="{
+						delay: 1750,
+						disableOnInteraction: false,
+					}"
+				>
+					<template v-for="image in data.carousel">
+						<swiper-slide>
+							<nuxt-img :src="image.asset._ref" class="select-none" loading="lazy" />
+						</swiper-slide>
+					</template>
+				</swiper>
+
+				<!-- <nuxt-img :src="image.asset._ref" :alt="data.caption" sizes="100vw sm:100vw md:100vw lg:100vw xl:100vw" :height="data.image.metadata.dimensions.height" :width="data.image.metadata.dimensions.width" :placeholder="data.image.metadata.lqip" :style="{ 'aspect-ratio': `${data.image.metadata.dimensions.width} / ${data.image.metadata.dimensions.height}` }" placeholder-class="object-cover" class="select-none" loading="lazy" /> -->
 
 				<!-- <swiper
 					loop
