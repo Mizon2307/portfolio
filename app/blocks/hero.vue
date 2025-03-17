@@ -14,7 +14,7 @@
 
 				<swiper
 					loop
-					:modules="[EffectFade]"
+					:modules="[EffectFade, Autoplay]"
 					effect="fade"
 					:autoplay="{
 						delay: 1750,
